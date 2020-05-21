@@ -5,7 +5,7 @@ We figure this out for you!
 ## Vision
 Throw in a project folder of yours, and we'll figure out the hard stuff for you!
 In case you haven't, we try to harvest some metainformation from your used libraries 
-in order to bake a nifty littly pom.xml for convenience of use.
+in order to bake a nifty littly file you can feed your dependency management system for convenience of use.
 
 ## Why should I bother?
 Sometimes it happens, that somebody whants to add a tiny library when refactoring an old project
