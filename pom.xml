@@ -1,30 +1,37 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>me.fschaupp</groupId>
-    <artifactId>dependencybuildr</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>DependencyBuildr</name>
-    <packaging>jar</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>me.fschaupp</groupId>
+  <artifactId>dependencybuildr</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>DependencyBuildr</name>
+  <packaging>jar</packaging>
+  <url>https://github.com/fschaupp/DependencyBuildr</url>
+
+  <scm>
     <url>https://github.com/fschaupp/DependencyBuildr</url>
-    <scm>
-        <url>https://github.com/fschaupp/DependencyBuildr</url>
-        <developerConnection>Florian Schaupp</developerConnection>
-        <tag>Maven</tag>
-    </scm>
-    <issueManagement>
-        <system>Github</system>
-        <url>https://github.com/fschaupp/DependencyBuildr/issues</url>
-    </issueManagement>
+    <developerConnection>Florian Schaupp</developerConnection>
+    <tag>Maven</tag>
+  </scm>
+  
+  <issueManagement>
+    <system>Github</system>
+    <url>https://github.com/fschaupp/DependencyBuildr/issues</url>
+  </issueManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.jgoodies</groupId>
-            <artifactId>jgoodies-forms</artifactId>
-            <version>1.9.0</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+  <properties>
+    <compileSource>1.8</compileSource>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
-
+  <dependencies>
+    <dependency>
+      <groupId>com.jgoodies</groupId>
+      <artifactId>jgoodies-forms</artifactId>
+      <version>1.9.0</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
 </project>

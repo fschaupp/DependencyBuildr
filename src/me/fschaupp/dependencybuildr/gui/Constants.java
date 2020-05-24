@@ -1,7 +1,9 @@
-package me.fschaupp.dependencybuildr;
+package me.fschaupp.dependencybuildr.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+
+import me.fschaupp.dependencybuildr.Utils;
 
 public final class Constants {
   public static final String TITLE = "DependencyBuildr";
