@@ -1,10 +1,13 @@
 package me.fschaupp.dependencybuildr.analyzr;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 
 public abstract class DependencyBuilder {
   private static Map<String, DependencyBuilder> dependencyBuilder = new TreeMap<String, DependencyBuilder>();
+
+  protected String builderFlavorName;
 
   public static void registerBuilder(String builderName, DependencyBuilder builder) {
     if (builderName == null || builderName.trim().length() == 0) {
@@ -30,5 +33,14 @@ public abstract class DependencyBuilder {
 
   public static DependencyBuilder get(String builderName) {
     return dependencyBuilder.get(builderName);
+  }
+
+  public static Collection<DependencyBuilder> getBuilders() {
+    return dependencyBuilder.values();
+  }
+
+  @Override
+  public String toString() {
+    return builderFlavorName;
   }
 }

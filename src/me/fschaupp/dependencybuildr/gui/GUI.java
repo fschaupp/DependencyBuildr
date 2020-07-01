@@ -4,8 +4,10 @@ import static me.fschaupp.dependencybuildr.gui.LayoutUtils.getConstraints;
 
 import java.awt.Container;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -16,6 +18,7 @@ import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 
 import me.fschaupp.dependencybuildr.Utils;
+import me.fschaupp.dependencybuildr.analyzr.DependencyBuilder;
 import me.fschaupp.dependencybuildr.gui.filefilters.MavenFileFilter;
 
 public class GUI extends JFrame implements Utils {
@@ -26,13 +29,14 @@ public class GUI extends JFrame implements Utils {
   private JButton browse;
   private JFileChooser projectChooser;
 
+  private JComboBox<DependencyBuilder> dependencyManagementFlavors;
+
   private FormLayout layout;
 
   public GUI() {
     createUI();
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setVisible(true);
   }
 
   private void createUI() {
@@ -43,26 +47,6 @@ public class GUI extends JFrame implements Utils {
 
     createLayout();
     createUIComponents();
-  }
-
-  private void createUIComponents() {
-    path = new JTextField();
-    path.setEditable(false);
-    rootPane.add(path, getConstraints(2, 2));
-
-    projectChooser = new JFileChooser();
-    projectChooser.setAcceptAllFileFilterUsed(false);
-    projectChooser.setFileFilter(MavenFileFilter.INSTANCE);
-    projectChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-    projectChooser.addActionListener(l -> {
-      if (JFileChooser.APPROVE_SELECTION.contentEquals(l.getActionCommand())) {
-        setSelection(projectChooser.getSelectedFile());
-      }
-    });
-
-    browse = new JButton("...");
-    browse.addActionListener(l -> projectChooser.showOpenDialog(browse));
-    rootPane.add(browse, getConstraints(2, 4));
   }
 
   private void createLayout() {
@@ -83,6 +67,40 @@ public class GUI extends JFrame implements Utils {
     rootPane.setLayout(layout);
   }
 
-  private void setSelection(File selectedFile) {
+  private void createUIComponents() {
+    path = new JTextField();
+    path.setEditable(false);
+    rootPane.add(path, getConstraints(2, 2));
+
+    projectChooser = new JFileChooser();
+    projectChooser.setAcceptAllFileFilterUsed(false);
+    projectChooser.setFileFilter(MavenFileFilter.INSTANCE);
+    projectChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+    projectChooser.addActionListener(l -> {
+      if (JFileChooser.APPROVE_SELECTION.contentEquals(l.getActionCommand())) {
+        try {
+          setSelection(projectChooser.getSelectedFile());
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    });
+
+    browse = new JButton("...");
+    browse.addActionListener(l -> projectChooser.showOpenDialog(browse));
+    rootPane.add(browse, getConstraints(2, 4));
+
+    dependencyManagementFlavors = new JComboBox<>(DependencyBuilder.getBuilders().toArray(new DependencyBuilder[0]));
+  }
+
+  public void setSelection(File selectedFile) throws IOException {
+    if (selectedFile == null) {
+      path.setText("");
+      return;
+    }
+
+    if (!selectedFile.exists()) {
+      throw new IOException("The provided file does not exist.");
+    }
   }
 }
