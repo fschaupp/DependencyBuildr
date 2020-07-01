@@ -3,6 +3,7 @@ package me.fschaupp.dependencybuildr.gui;
 import static me.fschaupp.dependencybuildr.gui.LayoutUtils.getConstraints;
 
 import java.awt.Container;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -54,7 +55,9 @@ public class GUI extends JFrame implements Utils {
     projectChooser.setFileFilter(MavenFileFilter.INSTANCE);
     projectChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
     projectChooser.addActionListener(l -> {
-      System.err.println("action! " + l.getID());
+      if (JFileChooser.APPROVE_SELECTION.contentEquals(l.getActionCommand())) {
+        setSelection(projectChooser.getSelectedFile());
+      }
     });
 
     browse = new JButton("...");
@@ -78,5 +81,8 @@ public class GUI extends JFrame implements Utils {
                             });
 
     rootPane.setLayout(layout);
+  }
+
+  private void setSelection(File selectedFile) {
   }
 }
