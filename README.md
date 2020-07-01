@@ -1,3 +1,5 @@
+![Java CI with Maven](https://github.com/fschaupp/DependencyBuildr/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master&event=push)
+
 # DependencyBuildr
 Ever had a project, but didn't want to hassle with maven, etc? 
 We figure this out for you!
