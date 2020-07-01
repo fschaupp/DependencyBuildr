@@ -17,19 +17,19 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 @TestInstance(Lifecycle.PER_CLASS)
-class GUITest {
+class MainPanelTest {
 
-  private GUI gui;
+  private MainPanel mainPanel;
   private JTextField path;
 
   @BeforeAll
   public void setup() {
-    gui = new GUI();
+    mainPanel = new MainPanel();
 
     try {
-      Field pathField = GUI.class.getDeclaredField("path");
+      Field pathField = MainPanel.class.getDeclaredField("path");
       pathField.setAccessible(true);
-      path = (JTextField) pathField.get(gui);
+      path = (JTextField) pathField.get(mainPanel);
     } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
       Assertions.fail(e);
     }
@@ -40,7 +40,7 @@ class GUITest {
   @Test
   public void setSelectionEmptyOrNull() {
     try {
-      gui.setSelection(null);
+      mainPanel.setSelection(null);
     } catch (IOException e) {
       fail("this should not be possible");
     }
@@ -51,10 +51,10 @@ class GUITest {
   @Test
   public void setSelectionNotExistent() {
     try {
-      gui.setSelection(new File("foo/bar/baz"));
+      mainPanel.setSelection(new File("foo/bar/baz"));
       fail("an exception should be thrown, when the file not exists");
     } catch (IOException e) {
-      assertEquals("The provided file does not exist", e.getMessage());
+      assertEquals("The provided file does not exist.", e.getMessage());
     }
   }
 
