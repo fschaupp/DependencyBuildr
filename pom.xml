@@ -5,7 +5,7 @@
 
   <groupId>me.fschaupp</groupId>
   <artifactId>dependencybuildr</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <name>DependencyBuildr</name>
   <packaging>jar</packaging>
   <url>https://github.com/fschaupp/DependencyBuildr</url>
@@ -15,7 +15,7 @@
     <developerConnection>Florian Schaupp</developerConnection>
     <tag>Maven</tag>
   </scm>
-  
+
   <issueManagement>
     <system>Github</system>
     <url>https://github.com/fschaupp/DependencyBuildr/issues</url>
@@ -23,15 +23,46 @@
 
   <properties>
     <compileSource>1.8</compileSource>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
+    <!-- compile dependencies -->
     <dependency>
       <groupId>com.jgoodies</groupId>
       <artifactId>jgoodies-forms</artifactId>
       <version>1.9.0</version>
       <scope>compile</scope>
     </dependency>
+
+    <!-- test dependencies -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.6.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.6.2</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
+
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+
+    <testSourceDirectory>tests</testSourceDirectory>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+      </plugin>
+    </plugins>
+  </build>
 </project>
